@@ -32,7 +32,7 @@ int main()
     {
         printf("%d %d\n",i,course[i].size());
         sort(course[i].begin(), course[i].end(), cmp);
-        for(int j = 0; j < course[i].size(),j++)
+        for(int j = 0; j < course[i].size();j++)
         {
             printf("%s\n",name[course[i][j]]);
         }
