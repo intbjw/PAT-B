@@ -1,42 +1,47 @@
-#include <iostream>
-#include <cstdio>
-#include <cstring>
-#include <vector>
-#include <algorithm>
-using namespace std;
-const int maxn = 40010;
-const int maxc = 2510;
-
-char name[maxn][5];
-vector<int> course[maxc];
-
-bool cmp(int a,int b) 
+#include<iostream>
+#include<vector>
+#include<string.h>
+#include<algorithm>
+ 
+typedef struct Student 
 {
-    return strcmp(name[a],name[b]);
+	char name[20];
+}Student;
+std::vector<Student> sVec;
+ 
+bool cmp(int s1, int s2)
+{
+	return strcmp(sVec[s1].name, sVec[s2].name) < 0;
 }
-
 int main()
 {
-    int n, k, c, courseID;
-    scanf("%d%d",&n, &k);
-    for(int i = 0;i < n;i++)
-    {
-        scanf("%s %d",name[i], &c);
-        for(int j = 0; j < c; j++)
-        {
-            scanf("%d",&courseID);
-            course[courseID].push_back(i);
-        }
-    }
-    for(int i = 1; i <= k; i++)
-    {
-        printf("%d %d\n",i,course[i].size());
-        sort(course[i].begin(), course[i].end(), cmp);
-        for(int j = 0; j < course[i].size();j++)
-        {
-            printf("%s\n",name[course[i][j]]);
-        }
-    }
-    return 0;
+	int s, c;
+	while(scanf("%d%d",&s,&c)!=EOF)
+	{
+		std::vector<std::vector<int>> cVec(c);
+		sVec.resize(s);
+		//input 
+		for(int i = 0; i < s; ++i)
+		{
+			int k;
+			scanf("%s %d",sVec[i].name, &k);
+			while(k--)
+			{
+				int cid;
+				scanf("%d",&cid);
+				cVec[cid-1].push_back(i);
+			}
+		}
+		//sort and output
+		for(int i = 0; i < (int)cVec.size(); ++i)
+		{
+			printf("%d %d\n",i+1, (int)cVec[i].size());
+			std::sort(cVec[i].begin(), cVec[i].end(), cmp);
+			for(int j = 0; j < (int)cVec[i].size(); ++j)
+			{
+				printf("%s\n",sVec[cVec[i][j]].name);
+			}
+		}
+	}
+	return 0;
 }
-
