@@ -23,17 +23,20 @@ int main()
         {
             h=l/n;
         }
-    std::cout << n << '\n';
-    std::cout << h << '\n';
+    for (int i = 0; i < n-(l%n); i++) {
+      mingwen+='@';
+    }
+    // std::cout << n << '\n';
+    // std::cout << h << '\n';
     int jz[n][h];
     for(int j=0;j<h;j++)
         {
             for(int k=0;k<n;k++)
             {
                 //jz[j][k]==mingwen[j*n+k];
-                std::cout << mingwen[j+k*h];
+                cout << mingwen[j+k*h];
             }
-            std::cout << " ";
+            cout << " ";
         }
 
      // for(int m=1;m<=n;m++)
